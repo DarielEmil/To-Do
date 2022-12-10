@@ -17,7 +17,7 @@ public class ayudaAdmin1 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(inter, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\interfaz ayuda admin\\Captura de pantalla 2022-12-10 104308.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(inter, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/interfaz ayuda admin/Captura de pantalla 2022-12-10 104308.png");
     }
 
     /**

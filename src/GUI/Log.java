@@ -1,14 +1,17 @@
 package GUI;
-
+import database.loginDB;
+import database.conexionDB;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
 public class Log extends javax.swing.JFrame {
-
-
-
+    loginDB log = new loginDB();
+    conexionDB cnx = new conexionDB();
+    static int ID ;
+    
     public Log() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -44,6 +47,7 @@ public class Log extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -125,18 +129,7 @@ public class Log extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Rectangle 141.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 1430, 120));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1046, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1046, 616));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -146,7 +139,15 @@ public class Log extends javax.swing.JFrame {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
-        // TODO add your handling code here:
+        ID = log.login(txtusuario.getText(), pwsdcontra.getText());
+        if (ID >= 1){    
+            Menu newframe = new Menu();
+            newframe.setVisible(true);
+            this.dispose();        
+        }else{
+            JOptionPane.showConfirmDialog(rootPane,"El correo o la contraseña es incorrecta", "login",JOptionPane.PLAIN_MESSAGE);
+        }
+        cnx.cerrar();
     }//GEN-LAST:event_btnentrarActionPerformed
 
     /**

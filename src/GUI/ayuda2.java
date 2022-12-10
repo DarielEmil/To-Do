@@ -17,7 +17,7 @@ public class ayuda2 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(paso2, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\interfaz ayuda\\Captura de pantalla 2022-12-09 103447 - copia.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(paso2, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/interfaz ayuda/Captura de pantalla 2022-12-09 103447 - copia.png");
     }
 
     /**
@@ -41,7 +41,7 @@ public class ayuda2 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("<html><center>2. Una vez que llenemos los 2 espacios de del log in se nos desplegara un menú");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 250, 170));
@@ -49,10 +49,10 @@ public class ayuda2 extends javax.swing.JFrame {
         paso2.setText("jLabel3");
         jPanel1.add(paso2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 400, 590));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("<html><center>3. El menú contiene ciertas opciones donde podemos interactuar con el una de ellas es la de ayuda como antes pulsaste, además cuenta con los botones Salir: para salir de la app, cerrar sesión: para hacer log out y acerca de: para saber oda la información sobre la app   ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 240, 190));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 320, 250));
 
         jButton1.setBackground(new java.awt.Color(3, 4, 94));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -71,7 +71,10 @@ public class ayuda2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        ayuda3 newframe = new ayuda3();
+        newframe.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

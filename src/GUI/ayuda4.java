@@ -17,7 +17,7 @@ public class ayuda4 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(paso4, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\interfaz ayuda\\Captura de pantalla 2022-12-09 121858 - copia.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(paso4, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/interfaz ayuda/Captura de pantalla 2022-12-09 121858 - copia.png");
     }
 
     /**
@@ -42,7 +42,7 @@ public class ayuda4 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("<html><center>5. dentro de esta nos encontramos con algunos botones, 3 cuadros de texto y un listado ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 580, 620, 60));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 670, 100));
 
         paso4.setText("jLabel2");
         jPanel1.add(paso4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 840, 560));
@@ -56,15 +56,18 @@ public class ayuda4 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 580, 130, 60));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 130, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 650));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ayuda5 newframe = new ayuda5();
+        newframe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

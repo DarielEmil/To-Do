@@ -1,12 +1,15 @@
 
 package GUI;
+import database.conexionDB;
+
+
 
 /**
  *
  * @author User
  */
 public class Menu extends javax.swing.JFrame {
-
+    conexionDB cn = new conexionDB();
     /**
      * Creates new form Menu
      */
@@ -14,10 +17,10 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(salir, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\cancel-5637_Ls9glpCn-.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(acerca, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\info-help-358_3-A0SjLtW.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(cerrars, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\quit-378_A_eNGK8Lq.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(ayuda, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\wrench-5969_WfhrMla0Z.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(salir, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/cancel-5637_Ls9glpCn-.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(acerca, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/info-help-358_3-A0SjLtW.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(cerrars, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/quit-378_A_eNGK8Lq.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(ayuda, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/wrench-5969_WfhrMla0Z.png");
     }
 
     /**
@@ -61,6 +64,11 @@ public class Menu extends javax.swing.JFrame {
         btniniciar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btniniciar.setForeground(new java.awt.Color(255, 255, 255));
         btniniciar.setText("Iniciar");
+        btniniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btniniciarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btniniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 190, 50));
 
         salir.setText("sal");
@@ -70,13 +78,18 @@ public class Menu extends javax.swing.JFrame {
         btnsalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnsalir.setForeground(new java.awt.Color(255, 255, 255));
         btnsalir.setText("Salir");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 190, 50));
 
         acerca.setText("acer");
         jPanel1.add(acerca, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 30, 30));
 
         cerrars.setText("sing");
-        jPanel1.add(cerrars, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 30, 30));
+        jPanel1.add(cerrars, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 30, 30));
 
         btnacercade.setBackground(new java.awt.Color(3, 4, 94));
         btnacercade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -88,6 +101,11 @@ public class Menu extends javax.swing.JFrame {
         btncerrars.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btncerrars.setForeground(new java.awt.Color(255, 255, 255));
         btncerrars.setText("Cerrar Sesión");
+        btncerrars.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncerrarsActionPerformed(evt);
+            }
+        });
         jPanel1.add(btncerrars, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 190, 50));
 
         ayuda.setText("ayu");
@@ -97,6 +115,11 @@ public class Menu extends javax.swing.JFrame {
         btnayuda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnayuda.setForeground(new java.awt.Color(255, 255, 255));
         btnayuda.setText("Ayuda");
+        btnayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnayudaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 190, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Polygon 4.png"))); // NOI18N
@@ -110,6 +133,32 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncerrarsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarsActionPerformed
+        // TODO add your handling code here:
+        Log newframe = new Log();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btncerrarsActionPerformed
+
+    private void btnayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnayudaActionPerformed
+        // TODO add your handling code here:
+        ayuda1 newframe = new ayuda1();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnayudaActionPerformed
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void btniniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniniciarActionPerformed
+        // TODO add your handling code here:
+        DentroApp newframe = new DentroApp();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btniniciarActionPerformed
 
     /**
      * @param args the command line arguments

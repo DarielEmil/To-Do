@@ -2,23 +2,19 @@
 package database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
 
 public class CRUD_To_Do {
     conexionDB cnx = new conexionDB();
-    Connection cn = cnx.conexion();
-    loginDB log = new loginDB();
-    int verify = log.login("Dariel", "123456");
-    public void agregar(String tarea, String fecha){
+    
+    public void agregar(int id, String tarea, String fechaInicio, String fechaFinal){
+        Connection cn = cnx.conexion();
         String SQL = "INSERT INTO tareas(IDUsuario, nombreTarea, fechaCreacion,fechaFinalizacion)"
-                + " VALUES (%s, '%s', date(), '%s')".formatted(verify, tarea, fecha);
+                + " VALUES (%s, '%s', '%s', '%s')".formatted(id, tarea, fechaInicio, fechaFinal);
         try{
-            if (verify >=1){
+            if (id >=1){
                 PreparedStatement st = cn.prepareStatement(SQL);
                 st.executeUpdate();
         }
@@ -29,34 +25,36 @@ public class CRUD_To_Do {
                 System.out.println("Hubo un problema al ingresar los datos: %s".formatted(e));
             };
         }
+        cnx.cerrar();
     };
-    public void eliminar(String tarea){
-        String SQL = "DELETE FROM tareas WHERE IDUsuario = %s AND nombreTarea = '%s'".formatted(verify, tarea);
+    public void eliminar(int id, String tarea){
+        cnx.cerrar();
+        Connection cn = cnx.conexion();
+        String SQL = "DELETE FROM tareas WHERE IDUsuario = %s AND nombreTarea = '%s'".formatted(id, tarea);
         try{
             PreparedStatement st = cn.prepareStatement(SQL);
             int status = st.executeUpdate();
-           
         }catch(SQLException e){
             System.out.println("Hubo un problema en actualizar los datos: %s".formatted(e));
             
         }
     };
-    public void actualizar(String tareaCambio){
-        String SQL = "UPDATE tareas SET nombreTarea = '%s' WHERE IDUsuario = %s".formatted(tareaCambio, verify);
+    public void actualizar(int id, String tareaCambio){
+        cnx.cerrar();
+        Connection cn = cnx.conexion();
+        String SQL = "UPDATE tareas SET nombreTarea = '%s' WHERE IDUsuario = %s".formatted(tareaCambio, id);
         try{
             PreparedStatement st = cn.prepareStatement(SQL);
             int status = st.executeUpdate();
             
         }catch (SQLException e){
-        
+            System.out.println("Hubo un problema al actualizar: %s".formatted(e));
         };
     };
-    public static void main(String[] args){
-        CRUD_To_Do obj = new CRUD_To_Do();
-        obj.agregar("Pruebaa", "2022/04/13");
-//          obj.eliminar("Prueba");
-//        obj.actualizar("Cambio de tarea");
-    };
+//    public static void main(String[] args){
+//        CRUD_To_Do obj = new CRUD_To_Do();
+//        obj.agregar(1, "Prueba", "2022", "2023");
+//    }
 }
 
 

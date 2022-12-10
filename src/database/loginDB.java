@@ -9,17 +9,19 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 
-class loginDB {
+public class loginDB {
     conexionDB cnx = new conexionDB();
-    Connection cn = cnx.conexion();
     public int login(String usuario, String clave){
+        cnx.cerrar();
         String SQL = "SELECT ID FROM usuario WHERE nombreUsuario = '%s' AND clave = '%s' ".formatted(usuario, clave);
+        Connection cn = cnx.conexion();
         try{ 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
             if (rs.getInt(1) >= 1){
                 return rs.getInt(1);
             };
+            cn.close();
         }catch(SQLException e){
             System.out.println("Error al ingresarse %s".formatted(e));
             return 0;
@@ -27,9 +29,10 @@ class loginDB {
             try{
                 cn.close();
             }catch(SQLException e){
-                System.out.println("Hubo un problema %s".formatted(e));
+                System.out.println("Error al cerrar la conexion: %s".formatted(e));
             }
         }
+        
         return 0;
     };
 //    public static void main(String[] args){

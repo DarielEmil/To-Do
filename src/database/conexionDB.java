@@ -7,9 +7,8 @@ import java.sql.SQLException;
 
 
 public class conexionDB {
-    Connection cn;
     public Connection conexion(){
-
+        Connection cn = null;
         try{
             cn = DriverManager.getConnection("jdbc:sqlite:ToDoDB");
         }
@@ -18,10 +17,19 @@ public class conexionDB {
         }
         return cn;
     };
-//    public static void main(String[] args){
-//        conexionDB obj = new conexionDB();
+    public void cerrar(){
+        conexionDB cnx = new conexionDB();
+        try{
+            cnx.conexion().close();
+        }catch(SQLException e){
+                System.out.println("Error al cerrar la conexion: %s".formatted(e));            
+            }
+       }
+    public static void main(String[] args){
+        conexionDB obj = new conexionDB();
 //        obj.conexion();
-//    };
+        obj.cerrar();
+    };
 }
 
 

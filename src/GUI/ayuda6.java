@@ -97,6 +97,9 @@ public class ayuda6 extends javax.swing.JFrame {
 
     private void btnvolvermenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolvermenuActionPerformed
         // TODO add your handling code here:
+        Menu newframe = new Menu();
+        newframe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnvolvermenuActionPerformed
 
     /**

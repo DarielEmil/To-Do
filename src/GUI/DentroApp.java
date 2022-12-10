@@ -4,23 +4,34 @@
  */
 package GUI;
 
+import java.sql.ResultSet;
+import java.sql.Connection;
+import database.conexionDB;
+import java.sql.Statement;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import database.CRUD_To_Do;
+
+
 /**
  *
  * @author User
  */
-public class DentroApp extends javax.swing.JFrame {
-
-    /**
-     * Creates new form DentroApp
-     */
+public class DentroApp extends javax.swing.JFrame{
+    Log ID = new Log();
+    conexionDB cnx = new conexionDB();
+    CRUD_To_Do cursor = new CRUD_To_Do();
+    
     public DentroApp() {
         initComponents();
+        informacionTareas(ID.ID); 
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(agg, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\add-note-4110_J4mvUNczA.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(act, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\reload-5685_XLZ_AAD5b.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(borr, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\remove-note-4109_APcswrtQZ.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(comp, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\happy-emoji-2947_XWI8qzIMz.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(agg, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/add-note-4110_J4mvUNczA.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(act, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/reload-5685_XLZ_AAD5b.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(borr, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/remove-note-4109_APcswrtQZ.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(comp, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/happy-emoji-2947_XWI8qzIMz.png");
     }
 
     /**
@@ -207,6 +218,8 @@ public class DentroApp extends javax.swing.JFrame {
 
     private void btnaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaggActionPerformed
         // TODO add your handling code here:
+        cnx.cerrar();
+        cursor.agregar(ID.ID, txtaggtarea2.getText(), txtfechainicio.getText(),txtfechafinal.getText());
     }//GEN-LAST:event_btnaggActionPerformed
 
     private void btnactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactActionPerformed
@@ -259,7 +272,38 @@ public class DentroApp extends javax.swing.JFrame {
             }
         });
     }
-
+    private void informacionTareas(int ID){
+        Connection cn = cnx.conexion();
+        String SQL = "SELECT * FROM tareas WHERE IDUsuario = %s".formatted(ID);
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("Tarea");
+        tabla.addColumn("fechaCreacion");
+        tabla.addColumn("Fecha de finalizacion");
+        tblista.setModel(tabla);
+        String data[] = new String[3];
+        Statement st;
+        try{
+            st = (Statement) cn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            while (rs.next()){
+                data[0] = rs.getString(2);
+                data[1] = rs.getString(3);
+                data[2] = rs.getString(4);
+                tabla.addRow(data);
+            }
+            tblista.setModel(tabla);
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: " + e);
+        }
+        cnx.cerrar();
+      
+        
+    }
+    private void limpiarCampos(){
+        txtaggtarea2.setText("");
+        txtfechainicio.setText("");
+        txtfechafinal.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel act;
     private javax.swing.JLabel agg;

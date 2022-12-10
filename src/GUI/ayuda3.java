@@ -10,14 +10,12 @@ package GUI;
  */
 public class ayuda3 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ayuda3
-     */
+
     public ayuda3() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        rsscalelabel.RSScaleLabel.setScaleLabel(paso3, "C:\\Users\\User\\Desktop\\GitHub\\To-Do\\InterfazG\\Java interfazG\\interfaz ayuda\\Captura de pantalla 2022-12-09 103447.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(paso3, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/interfaz ayuda/Captura de pantalla 2022-12-09 103447.png");
     }
 
     /**
@@ -66,6 +64,9 @@ public class ayuda3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ayuda4 newframe = new ayuda4();
+        newframe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
