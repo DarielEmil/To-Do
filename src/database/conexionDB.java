@@ -11,13 +11,17 @@ public class conexionDB {
     public Connection conexion(){
 
         try{
-            cn = DriverManager.getConnection("jdbc:sqlite:ToDo_DB.db");
+            cn = DriverManager.getConnection("jdbc:sqlite:ToDoDB");
         }
         catch(SQLException e){
             System.out.println("Hubo algun error: %s".formatted(e));
         }
         return cn;
     };
+//    public static void main(String[] args){
+//        conexionDB obj = new conexionDB();
+//        obj.conexion();
+//    };
 }
 
 
