@@ -1,23 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import database.conexionDB;
+import java.sql.Statement;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import database.CRUD_To_Do;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JPasswordField;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author User
  */
 public class AdminApp extends javax.swing.JFrame {
-
+    LoginAdmin ID = new LoginAdmin();
+    conexionDB cnx = new conexionDB();
+    CRUD_To_Do cursor = new CRUD_To_Do();
     /**
      * Creates new form AdminApp
      */
     public AdminApp() {
         initComponents();
+        informacionTareas(); 
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-         rsscalelabel.RSScaleLabel.setScaleLabel(agg, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/add-note-4110_J4mvUNczA.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(agg, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/add-note-4110_J4mvUNczA.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(act, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/reload-5685_XLZ_AAD5b.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(borr, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/remove-note-4109_APcswrtQZ.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(ayuda, "/home/darielrdriguez/NetBeansProjects/To-Do/InterfazG/Java interfazG/wrench-5969_WfhrMla0Z.png");
@@ -44,8 +55,6 @@ public class AdminApp extends javax.swing.JFrame {
         btnborrAdmin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnaggAdmin = new javax.swing.JButton();
-        txtidAdmin = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         txtcorreoAdmin = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -91,6 +100,11 @@ public class AdminApp extends javax.swing.JFrame {
         btnactAdmin.setForeground(new java.awt.Color(0, 180, 216));
         btnactAdmin.setText("Actualizar");
         btnactAdmin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnactAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactAdminActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnactAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 150, 60));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Rectangle 1.png"))); // NOI18N
@@ -119,14 +133,12 @@ public class AdminApp extends javax.swing.JFrame {
         btnaggAdmin.setForeground(new java.awt.Color(0, 180, 216));
         btnaggAdmin.setText("Agregar");
         btnaggAdmin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnaggAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaggAdminActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnaggAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 150, 60));
-
-        txtidAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel3.add(txtidAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 190, 50));
-
-        jLabel10.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        jLabel10.setText("ID");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         txtcorreoAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.add(txtcorreoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 190, 50));
@@ -140,11 +152,11 @@ public class AdminApp extends javax.swing.JFrame {
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
 
         txtnombreAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel3.add(txtnombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 200, 50));
+        jPanel3.add(txtnombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 200, 50));
 
         jLabel11.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         jLabel11.setText("Nombre de Usuario");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
@@ -177,6 +189,11 @@ public class AdminApp extends javax.swing.JFrame {
 
         txtbuscarAdmin.setBackground(new java.awt.Color(0, 180, 216));
         txtbuscarAdmin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        txtbuscarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscarAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtbuscarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 340, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Group 1126new.png"))); // NOI18N
@@ -195,6 +212,11 @@ public class AdminApp extends javax.swing.JFrame {
         btnayudaAmin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnayudaAmin.setForeground(new java.awt.Color(255, 255, 255));
         btnayudaAmin.setText("Ayuda");
+        btnayudaAmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnayudaAminActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnayudaAmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 570, 150, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 640));
@@ -204,7 +226,56 @@ public class AdminApp extends javax.swing.JFrame {
 
     private void btnborrAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnborrAdminActionPerformed
         // TODO add your handling code here:
+        try{
+            int fila = this.jTable1.getSelectedRow();
+            int columna = this.jTable1.getSelectedColumn();
+            String data = String.valueOf(this.jTable1.getValueAt(fila, columna));
+            cursor.eliminarA(Integer.parseInt(data));
+            informacionTareas();   
+        }catch(Exception e){
+            JOptionPane.showMessageDialog( this,"Favor seleccionar un campo para eliminar");
+        }
     }//GEN-LAST:event_btnborrAdminActionPerformed
+
+    private void btnayudaAminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnayudaAminActionPerformed
+        // TODO add your handling code here:
+        ayudaAdmin1 newframe = new ayudaAdmin1();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnayudaAminActionPerformed
+
+    private void btnaggAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaggAdminActionPerformed
+        // TODO add your handling code here:
+        if (txtnombreAdmin.getText().isEmpty() || txtcorreoAdmin.getText().isEmpty() || pwscontraAdmin.getText().isEmpty()){
+            JOptionPane.showMessageDialog( this,"Debe completar todos los campos");
+        }else{
+            cursor.agregarA(ID.ID, txtnombreAdmin.getText(), pwscontraAdmin.getText(),txtcorreoAdmin.getText());
+            informacionTareas();        
+        }
+    }//GEN-LAST:event_btnaggAdminActionPerformed
+
+    private void btnactAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactAdminActionPerformed
+        // TODO add your handling code here:
+        try{
+            int fila = this.jTable1.getSelectedRow();
+            int columna = this.jTable1.getSelectedColumn();
+            String data = String.valueOf(this.jTable1.getValueAt(fila, columna));
+            cursor.actualizarA(Integer.parseInt(data), txtnombreAdmin.getText());
+            informacionTareas();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog( this,"Favor seleccionar el campo ID");
+        };
+    }//GEN-LAST:event_btnactAdminActionPerformed
+
+    private void txtbuscarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscarAdminActionPerformed
+        // TODO add your handling code here:
+        if(txtbuscarAdmin.getText().isEmpty()){
+            informacionTareas();
+        }else{
+            listar(txtbuscarAdmin.getText());
+        }
+        
+    }//GEN-LAST:event_txtbuscarAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,7 +311,56 @@ public class AdminApp extends javax.swing.JFrame {
             }
         });
     }
-
+    private void informacionTareas(){
+        Connection cn = cnx.conexion();
+        String SQL = "SELECT * FROM usuario";
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("ID");
+        tabla.addColumn("nombre");        
+        tabla.addColumn("correo");
+        jTable1.setModel(tabla);
+        String data[] = new String[3];
+        Statement st;
+        try{    
+            st = (Statement) cn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            while (rs.next()){      
+                data[0] = rs.getString(1);
+                data[1] = rs.getString(2);
+                data[2] = rs.getString(4);
+                tabla.addRow(data);
+            }
+            jTable1.setModel(tabla);
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: %s".formatted(e));
+        }
+        cnx.cerrar();
+    }
+        private void listar(String usuario){
+        Connection cn = cnx.conexion();
+        String SQL = "SELECT * FROM usuario WHERE nombreUsuario = '%s'".formatted(usuario);
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("ID");
+        tabla.addColumn("nombre");        
+        tabla.addColumn("correo");
+        jTable1.setModel(tabla);
+        String data[] = new String[3];
+        Statement st;
+        try{    
+            st = (Statement) cn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            while (rs.next()){      
+                data[0] = rs.getString(1);
+                data[1] = rs.getString(2);
+                data[2] = rs.getString(4);
+                tabla.addRow(data);
+            }
+            jTable1.setModel(tabla);
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(rootPane, "Error en la consulta SQL: %s".formatted(e));
+        }
+        cnx.cerrar();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel act;
     private javax.swing.JLabel agg;
@@ -251,7 +371,6 @@ public class AdminApp extends javax.swing.JFrame {
     private javax.swing.JButton btnayudaAmin;
     private javax.swing.JButton btnborrAdmin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -269,7 +388,6 @@ public class AdminApp extends javax.swing.JFrame {
     private javax.swing.JPasswordField pwscontraAdmin;
     private javax.swing.JTextField txtbuscarAdmin;
     private javax.swing.JTextField txtcorreoAdmin;
-    private javax.swing.JTextField txtidAdmin;
     private javax.swing.JTextField txtnombreAdmin;
     // End of variables declaration//GEN-END:variables
 }

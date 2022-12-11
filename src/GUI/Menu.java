@@ -1,6 +1,7 @@
 
 package GUI;
 import database.conexionDB;
+import javax.swing.JOptionPane;
 
 
 
@@ -95,6 +96,11 @@ public class Menu extends javax.swing.JFrame {
         btnacercade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnacercade.setForeground(new java.awt.Color(255, 255, 255));
         btnacercade.setText("Acerca de");
+        btnacercade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnacercadeActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnacercade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 190, 50));
 
         btncerrars.setBackground(new java.awt.Color(3, 4, 94));
@@ -159,6 +165,15 @@ public class Menu extends javax.swing.JFrame {
         newframe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btniniciarActionPerformed
+
+    private void btnacercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnacercadeActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog( this,"Esta app tiene como objetivo el insentivar a las personas a la organización y preparación personal dentro de una empresa,\n" +
+"Esta misma cuenta con un listado donde cada persona integrada en ella puede agregar, actualiza y borrar\n" +
+"tareas de una forma muy facil y rapida, ademas de que cuenta con una segunda funcion donde se pueden adiministrar\n" +
+"los usuarios que pueden interactuar con la app. \n\n\n Version 0.2");
+
+    }//GEN-LAST:event_btnacercadeActionPerformed
 
     /**
      * @param args the command line arguments

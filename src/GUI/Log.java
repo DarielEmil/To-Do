@@ -124,6 +124,11 @@ public class Log extends javax.swing.JFrame {
         btnAdmin.setFont(new java.awt.Font("Cooper Black", 0, 14)); // NOI18N
         btnAdmin.setForeground(new java.awt.Color(255, 255, 255));
         btnAdmin.setText("Entrar como Administrador");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, 250, 40));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Rectangle 141.png"))); // NOI18N
@@ -139,7 +144,7 @@ public class Log extends javax.swing.JFrame {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
-        ID = log.login(txtusuario.getText(), pwsdcontra.getText());
+        ID = log.loginU(txtusuario.getText(), pwsdcontra.getText());
         if (ID >= 1){    
             Menu newframe = new Menu();
             newframe.setVisible(true);
@@ -149,6 +154,13 @@ public class Log extends javax.swing.JFrame {
         }
         cnx.cerrar();
     }//GEN-LAST:event_btnentrarActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        // TODO add your handling code here:
+        LoginAdmin newframe = new LoginAdmin();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAdminActionPerformed
 
     /**
      * @param args the command line arguments

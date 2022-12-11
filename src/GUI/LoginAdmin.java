@@ -3,13 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-
+import database.loginDB;
+import database.conexionDB;
+import javax.swing.JOptionPane;
 /**
  *
  * @author User
  */
 public class LoginAdmin extends javax.swing.JFrame {
-
+    loginDB log = new loginDB();
+    conexionDB cnx = new conexionDB();
+    static int ID ;
     /**
      * Creates new form AdminApp
      */
@@ -154,10 +158,22 @@ public class LoginAdmin extends javax.swing.JFrame {
 
     private void btnentrarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarAdminActionPerformed
         // TODO add your handling code here:
+        ID = log.loginA(txtAdmin.getText(), pwsdcontraAdmin.getText());
+        if (ID >= 1){    
+            AdminApp newframe = new AdminApp();
+            newframe.setVisible(true);
+            this.dispose();        
+        }else{
+            JOptionPane.showConfirmDialog(rootPane,"El correo o la contraseña es incorrecta", "login",JOptionPane.PLAIN_MESSAGE);
+        }
+        cnx.cerrar();
     }//GEN-LAST:event_btnentrarAdminActionPerformed
 
     private void btnvolvearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolvearusuarioActionPerformed
         // TODO add your handling code here:
+        Log newframe = new Log();
+        newframe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnvolvearusuarioActionPerformed
 
     /**
