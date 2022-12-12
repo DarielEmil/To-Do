@@ -26,7 +26,7 @@ Para iniciar, primero clone este repositorio en un `directorio`.
 git clone https://github.com/DarielEmil/To-Do.git
 ```
 
-Luego abrir `Netbeans` y abre el proyecto en su IDE. Ejecutando el sistema con el icono :arrow_forward:
+Luego abrir `Netbeans` y abrir el proyecto en su Netbeans. Ejecutando el sistema con el icono :arrow_forward:
 
 # :candy:Extra
 
