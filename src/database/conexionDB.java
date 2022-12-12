@@ -25,11 +25,6 @@ public class conexionDB {
                 System.out.println("Error al cerrar la conexion: %s".formatted(e));            
             }
        }
-    public static void main(String[] args){
-        conexionDB obj = new conexionDB();
-//        obj.conexion();
-        obj.cerrar();
-    };
 }
 
 
