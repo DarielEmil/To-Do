@@ -20,7 +20,7 @@ Es un administrador de tareas de escritorio construido en Java Swing en Netbeans
 > [Netbeans](https://netbeans.apache.org/download/index.html)
 
 # :space_invader:Uso
-:warning: Para registrarse debe de ponerse en contacto con algún desarrollador
+> :exclamation: Para registrarse debe de ponerse en contacto con algún desarrollador
 Para iniciar, primero clone este repositorio en un `directorio`.
 ```
 git clone https://github.com/DarielEmil/To-Do.git
